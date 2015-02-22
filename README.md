@@ -1,7 +1,9 @@
 This is a simple C program which blinks an LED on the Arduino Uno, transmitting
 a message via the serial link whenever it does so.
 
-## Dependencies
+## Building and running
+
+### Dependencies
 
 * make
 * binutils-avr
@@ -9,18 +11,30 @@ a message via the serial link whenever it does so.
 * avrdude
 * gcc-avr
 
-## Compiling binary
+### Compiling
 
     make
 
-## Uploading binary to Arduino
+The default `make` task builds an Intel HEX file, `led_blink.hex`, which can be
+uploaded to the Arduino Uno.
+
+### Uploading
 
     sudo make upload
 
-## Interacting via the USB serial connection
+Flashes `led_blink.hex` to the Arduino Uno, which is assumed to be connected
+and available on `/dev/ttyACM0`.
 
-1. Install CuteCom
-2. Run CuteCom as root
+### Watching
+
+A status LED should be visibly blinking on the Arduino. However, this program
+also sends a message via the USB serial connection every time the LED blinks.
+
+One way to interact via the serial connection is with
+[CuteCom](http://cutecom.sourceforge.net/).
+
+1. Install CuteCom (`sudo apt-get install cutecom`)
+2. Run CuteCom as root (`sudo cutecom`)
 3. Set "Device" to `/dev/ttyACM0` "Baud rate" to `9600`
 4. Click "Open Device"
 
